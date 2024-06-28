@@ -5,6 +5,7 @@ import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
 import java.awt.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,13 +19,15 @@ public class Review extends BaseEntity {
     private Long id;
 
     @Column(nullable = false, length = 50)
-    private String title;
+    private String storeName;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    private String imageUrls;
+
     @Column(nullable = false)
-    private Float score;
+    private Integer rate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
