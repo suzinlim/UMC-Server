@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/mypage/reviews")
+@RequestMapping("/reviews")
 @RequiredArgsConstructor
 public class ReviewRestController {
 
@@ -28,7 +28,7 @@ public class ReviewRestController {
 
     @GetMapping("/")
     public ApiResponse<List<ReviewResponseDTO.ReviewResultDto>> getMyReviews() {
-        List<Review> reviews = reviewCommandService.getMyReviews(); // 해당 유저의 리뷰 가져오기
+        List<Review> reviews = reviewCommandService.getMyReviews();
         List<ReviewResponseDTO.ReviewResultDto> responseDTOs = reviews.stream()
                 .map(ReviewConverter::toReviewResultDto)
                 .collect(Collectors.toList());
