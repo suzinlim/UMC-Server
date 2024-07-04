@@ -9,6 +9,9 @@ import umc.study.domain.common.BaseEntity;
 import umc.study.domain.eums.StoreStatus;
 import umc.study.domain.eums.StoreType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -44,4 +47,10 @@ public class Store extends BaseEntity {
     @Min(value = 0, message = "최소 점수는 0점입니다.")
     @Max(value = 5, message = "최대 점수는 5점입니다.")
     private Float score;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 }
