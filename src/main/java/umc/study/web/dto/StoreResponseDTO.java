@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class MemberResponseDTO {
-
+public class StoreResponseDTO {
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class JoinResultDTO {
-        Long memberId;
+    public static class AddStoreResultDTO{
+        Long storeId;
         LocalDateTime createdAt;
     }
 }
