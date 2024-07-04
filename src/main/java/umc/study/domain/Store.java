@@ -44,4 +44,12 @@ public class Store extends BaseEntity {
     @Min(value = 0, message = "최소 점수는 0점입니다.")
     @Max(value = 5, message = "최대 점수는 5점입니다.")
     private Float score;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
+
+    public void setRegion(Region region){
+        this.region = region;
+    }
 }
