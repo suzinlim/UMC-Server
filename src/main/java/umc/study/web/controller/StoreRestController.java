@@ -1,5 +1,6 @@
 package umc.study.web.controller;
 
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

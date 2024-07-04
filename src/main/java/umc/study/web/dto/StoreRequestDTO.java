@@ -1,8 +1,9 @@
 package umc.study.web.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
+import umc.study.domain.Region;
+import umc.study.domain.eums.StoreStatus;
 import umc.study.domain.eums.StoreType;
 
 public class StoreRequestDTO {
@@ -12,9 +13,16 @@ public class StoreRequestDTO {
         String name;
         @NotBlank
         String address;
+        @NotNull
         StoreType storeType;
+        @NotNull
+        StoreStatus storeStatus;
         @NotBlank
         String phoneNumber;
+        @NotNull
+        Integer minimumPrice;
+        @NotNull
+        Float score;
     }
 
     @Getter

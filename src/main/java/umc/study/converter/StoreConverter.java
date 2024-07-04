@@ -1,5 +1,6 @@
 package umc.study.converter;
 
+import umc.study.domain.Region;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.web.dto.StoreRequestDTO;
@@ -14,7 +15,10 @@ public class StoreConverter {
                 .name(request.getName())
                 .address(request.getAddress())
                 .storeType(request.getStoreType())
+                .storeStatus(request.getStoreStatus())
+                .minimumPrice(request.getMinimumPrice())
                 .phoneNumber(request.getPhoneNumber())
+                .score(request.getScore())
                 .build();
     }
 
