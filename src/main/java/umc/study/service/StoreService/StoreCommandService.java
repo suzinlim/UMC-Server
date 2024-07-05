@@ -15,4 +15,6 @@ public interface StoreCommandService {
     List<Review> getMyReviews();
 
     Mission addMission(StoreRequestDTO.MissionDTO request);
+
+    Review createReview(Long memberId, Long storeId, StoreRequestDTO.ReveiwDTO request);
 }

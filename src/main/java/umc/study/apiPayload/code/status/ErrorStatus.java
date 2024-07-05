@@ -38,6 +38,7 @@ public enum ErrorStatus implements BaseErrorCode {
     // Mission Error
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "해당 미션이 없습니다.");
 
+
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;

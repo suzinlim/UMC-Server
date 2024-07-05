@@ -23,6 +23,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
+    private final StoreRepository storeRepository;
 
     // 가게 추가
     @Override
@@ -68,5 +69,15 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
         Mission mission = StoreConverter.toMission(request, store);
         return missionRepository.save(mission);
+      
+    @Override
+    public Review createReview(Long memberId, Long storeId, StoreRequestDTO.ReveiwDTO request) {
+
+        Review review = StoreConverter.toReview(request);
+
+        review.setMember(memberRepository.findById(memberId).get());
+        review.setStore(storeRepository.findById(storeId).get());
+
+        return reviewRepository.save(review);
     }
 }
