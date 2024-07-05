@@ -9,6 +9,9 @@ import umc.study.domain.common.BaseEntity;
 import umc.study.domain.eums.StoreStatus;
 import umc.study.domain.eums.StoreType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -52,4 +55,10 @@ public class Store extends BaseEntity {
     public void setRegion(Region region){
         this.region = region;
     }
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 }
