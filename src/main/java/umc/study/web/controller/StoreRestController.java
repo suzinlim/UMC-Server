@@ -5,11 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
+import umc.study.converter.MemberConverter;
 import umc.study.converter.StoreConverter;
 import umc.study.domain.Mission;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
+import umc.study.domain.mapping.MemberMission;
+import umc.study.service.MemberService.MemberCommandService;
 import umc.study.service.StoreService.StoreCommandService;
+import umc.study.web.dto.MemberRequestDTO;
+import umc.study.web.dto.MemberResponseDTO;
 import umc.study.web.dto.StoreRequestDTO;
 import umc.study.web.dto.StoreResponseDTO;
 
@@ -23,6 +28,7 @@ import java.util.stream.Collectors;
 public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
+    private final MemberCommandService memberCommandService;
 
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.AddStoreResultDTO> createReview(@RequestBody @Valid StoreRequestDTO.StoreDTO request) {
@@ -34,6 +40,12 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.AddMissionResultDTO> createMission(@RequestBody @Valid StoreRequestDTO.MissionDTO request) {
         Mission mission = storeCommandService.addMission(request);
         return ApiResponse.onSuccess(StoreConverter.toAddMissionResultDTO(mission));
+    }
+
+    @PostMapping("/missions/challenge")
+    public ApiResponse<MemberResponseDTO.MemberMissionResultDTO> createMemberMission(@RequestBody @Valid MemberRequestDTO.MemberMissionRequestDTO request) {
+        MemberMission memberMission = memberCommandService.challengeMission(request);
+        return ApiResponse.onSuccess(MemberConverter.toMemberMissionResultDTO(memberMission));
     }
 
     @PostMapping("/reviews")
