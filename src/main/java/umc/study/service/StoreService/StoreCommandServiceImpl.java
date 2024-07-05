@@ -3,21 +3,28 @@ package umc.study.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.study.apiPayload.code.status.ErrorStatus;
+import umc.study.apiPayload.exception.handler.MemberHandler;
+import umc.study.apiPayload.exception.handler.StoreHandler;
 import umc.study.converter.StoreConverter;
-import umc.study.domain.Region;
-import umc.study.domain.Store;
-import umc.study.repository.RegionRepository;
-import umc.study.repository.StoreRepository;
+import umc.study.domain.*;
+import umc.study.repository.*;
 import umc.study.web.dto.StoreRequestDTO;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class StoreCommandServiceImpl implements StoreCommandService {
 
     private final StoreRepository storeRepository;
     private final RegionRepository regionRepository;
+    private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
 
+    // 가게 추가
     @Override
     @Transactional
     public Store addStore(StoreRequestDTO.StoreDTO request) {
@@ -35,5 +42,31 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         newStore.setRegion(region);
 
         return storeRepository.save(newStore);
+    }
+
+    // 리뷰 추가
+    @Override
+    @Transactional
+    public Review addReview(StoreRequestDTO.ReveiwDTO request) {
+        Member member = memberRepository.findById(request.getMemberId())
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+
+        Review review = StoreConverter.toReview(request, member);
+        return reviewRepository.save(review);
+    }
+
+    @Override
+    public List<Review> getMyReviews() {
+        return reviewRepository.findAll();
+    }
+
+    // 미션 추가
+    @Override
+    public Mission addMission(StoreRequestDTO.MissionDTO request) {
+        Store store = storeRepository.findById(request.getStoreId())
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
+
+        Mission mission = StoreConverter.toMission(request, store);
+        return missionRepository.save(mission);
     }
 }
