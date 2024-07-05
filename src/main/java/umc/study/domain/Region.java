@@ -1,6 +1,7 @@
 package umc.study.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
@@ -17,4 +18,7 @@ public class Region extends BaseEntity {
 
     @Column(length = 50)
     private String name;
+
+    @NotBlank
+    private String address;
 }

@@ -6,14 +6,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
-      mode: never
+      mode: always  # 데이터 초기화 활성화
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
   jpa:
+    hibernate:
+      ddl-auto: create  # 기존 데이터를 유지하려면 update 사용
+    defer-datasource-initialization: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         show_sql: true
         format_sql: true
         use_sql_comments: true
-        hbm2ddl:
-          auto: create # update로 바꿀 것
         default_batch_fetch_size: 1000
