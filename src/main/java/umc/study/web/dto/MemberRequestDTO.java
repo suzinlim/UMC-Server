@@ -11,7 +11,7 @@ import java.util.List;
 public class MemberRequestDTO {
 
     @Getter
-    public static class JoinDto{
+    public static class JoinDto {
         @NotBlank
         String name;
         @NotNull
@@ -28,5 +28,13 @@ public class MemberRequestDTO {
         String specAddress;
         @ExistCategories
         List<Long> preferCategory;
+    }
+
+    @Getter
+    public static class MemberMissionRequestDTO {
+        @NotNull
+        Long missionId;
+        @NotNull
+        Long memberId;
     }
 }
