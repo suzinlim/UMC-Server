@@ -13,11 +13,15 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-
-    public static class AddStoreResultDTO{
+    public static class AddStoreResultDTO {
         Long storeId;
         LocalDateTime createdAt;
+    }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ReviewPreViewListDTO{
         List<ReviewPreViewDTO> reviewList;
         Integer listSize;
@@ -31,11 +35,16 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class AddMissionResultDTO{
+    public static class AddMissionResultDTO {
         Long storeId;
         Long missionId;
         LocalDateTime createdAt;
+    }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ReviewPreViewDTO{
         String ownerNickname;
         Float score;
@@ -52,9 +61,5 @@ public class StoreResponseDTO {
         Long memberId;
         LocalDateTime createdAt;
         LocalDateTime updatedAt;
-
-    public static class CreateReviewResultDTO{
-        Long reviewId;
-        LocalDateTime createdAt;
     }
 }

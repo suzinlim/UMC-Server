@@ -46,7 +46,7 @@ public class StoreRequestDTO {
         String storeName;
 
         @NotNull
-        Integer score;
+        Float score;
 
         List<String> imageUrl;
 
